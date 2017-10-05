@@ -1,7 +1,9 @@
 #include "Semaphore.h"
 #include <iostream>
 #include <thread>
-
+/** signal.cpp 
+ *  Simple program to demonstrate the principles of semaphores and show them in action. The function taskOne has to complete before taskTwo, no matter the timing of their actual executions
+ */
 void taskOne(std::shared_ptr<Semaphore> theSemaphore)
 {
   std::cout <<"I ";
