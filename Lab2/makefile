@@ -1,10 +1,20 @@
-CC=g++
-CFLAGS= -std=c++11 -pthread
-FILES= rendezous.cpp Semaphore.cpp
-OUT_EXE=rendezous
+#Dylan Lawlor 11/05/2018
+#Makefile
+#Used to contain commands to compile project
 
-build: $(FILES)
-	$(CC) -o $(OUT_EXE) $(FILES) $(CFLAGS)
+EXE = rendevous
+CC = g++
+CFLAGS = -std=c++11 -pthread -I.
+CFILES = rendevous.o Semaphore.o
 
-clean:
+#This rule says that each .o file depends on a .cpp file of the same name
+%.o: %.cpp
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+ALL: $(CFILES)
+	$(CC) $(CFILES) $(CFLAGS) -o $(EXE)
+
+
+#this is customary and just deletes all .o files
+CLEAN:
 	rm *.o

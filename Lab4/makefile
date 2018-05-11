@@ -1,12 +1,13 @@
 #Dylan Lawlor 11/05/2018
+#License Employed: GNU General Public License v3.0
 #Makefile
 #Used to contain commands to compile project
 
 
-EXE = mutex
+EXE = Barrier
 CC = g++
-CFLAGS = -std=c++11 -pthread 
-CFILES = mutex.o Semaphore.o
+CFLAGS = -std=c++11 -pthread -I.
+CFILES = main.o Barrier.o Semaphore.o
 
 #This rule says that each .o file depends on a .cpp file of the same name
 %.o: %.cpp
@@ -15,7 +16,7 @@ CFILES = mutex.o Semaphore.o
 ALL: $(CFILES)
 	$(CC) $(CFILES) $(CFLAGS) -o $(EXE) $(DEBUGFLAGS)
 
-DEBUG: DEBUGFLAGS = -g -O0
+DEBUG: DEBUGFLAGS = -g -O0 -Wall
 DEBUG: ALL
 
 #this is customary and just deletes all .o files

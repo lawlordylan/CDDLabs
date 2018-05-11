@@ -1,11 +1,18 @@
+/*! 
+  \\ Author: Dylan Lawlor
+  \\ Date: 11/05/2018
+  \\ brief A Semaphore Implementation to show mutual exclusion where only one thread at a time can access a shared variable, in this case a counter.
+  \  
+  \\ Uses C++11 features such as mutex and condition variables to implement Semaphore
+*/
+
 #include "Semaphore.h"
 #include <iostream>
 #include <thread>
-/** mutex.cpp 
- *  Simple program to demonstrate the principles of semaphores and show them in action. This program will demonstrate the princples of mutual exclusion. A shared variable count can only be accessed by one thread at a time. This will be achieved using semaphores.
- */
+
 void threadOne(std::shared_ptr<Semaphore> theSemaphore, int& count)
 {
+  std::cout << "Thread 1 started" << std::endl;
   theSemaphore->Wait();
   /**critical region */
   std::cout << "Thread 1 enters critical section. Count is "<< count << std::endl;
@@ -18,6 +25,7 @@ void threadOne(std::shared_ptr<Semaphore> theSemaphore, int& count)
 }
 void threadTwo(std::shared_ptr<Semaphore> theSemaphore, int& count)
 {
+  std::cout << "Thread 2 started" << std::endl;
   theSemaphore->Wait();
   /**critical region */
   std::cout << "Thread 2 enters critical section. Count is "<< count << std::endl;
